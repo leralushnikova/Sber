@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -36,19 +36,29 @@ public class Main {
             cityList.add(city);
         }
         reader.close();
+        /*for (City c : cityList) {
+            System.out.println(c.toString());
+        }*/
+
+        cityList.sort(new Comparator<City>() {
+            @Override
+            public int compare(City o1, City o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        for (City c : cityList) {
+            System.out.println(c.toString());
+        }
+        System.out.println();
+        cityList.sort(new Comparator<City>() {
+            @Override
+            public int compare(City o1, City o2) {
+                return o1.getDistrict().compareTo(o2.getDistrict()) ;
+            }
+        });
         for (City c : cityList) {
             System.out.println(c.toString());
         }
 
-       /* for (City c : cityList) {
-            for (City s : cityList) {
-                if (c.getRegion().compareTo(s.getRegion()) > 0) {
-                    City a = c;
-                    c = s;
-                    s = a;
-                }
-            }
-            System.out.println(c);
-        }*/
     }
 }
