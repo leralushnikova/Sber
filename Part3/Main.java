@@ -36,9 +36,9 @@ public class Main {
             cityList.add(city);
         }
         reader.close();
-        /*for (City c : cityList) {
+        for (City c : cityList) {
             System.out.println(c.toString());
-        }*/
+        }
 
        /* for (City c : cityList) {
             for (City s : cityList) {
