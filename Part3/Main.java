@@ -3,10 +3,11 @@ package Part3;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.function.Function;
+
+import static java.util.stream.Collectors.counting;
+import static java.util.stream.Collectors.groupingBy;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -37,25 +38,35 @@ public class Main {
         }
         reader.close();
 
-//        cityList.sort(new Comparator<City>() {
-//            @Override
-//            public int compare(City o1, City o2) {
-//                return o1.getName().compareTo(o2.getName());
-//            }
-//        });
-//        for (City c : cityList) {
-//            System.out.println(c.toString());
-//        }
-//        System.out.println();
-//        cityList.sort(new Comparator<City>() {
-//            @Override
-//            public int compare(City o1, City o2) {
-//                return o1.getDistrict().compareTo(o2.getDistrict()) ;
-//            }
-//        });
-//        for (City c : cityList) {
-//            System.out.println(c.toString());
-//        }
+        /*
+        for (City c : cityList) {
+            System.out.println(c.toString());
+        }
+        */
+
+        /*
+        cityList.sort(new Comparator<City>() {
+            @Override
+            public int compare(City o1, City o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        for (City c : cityList) {
+            System.out.println(c.toString());
+        }
+        System.out.println();
+        cityList.sort(new Comparator<City>() {
+            @Override
+            public int compare(City o1, City o2) {
+                return o1.getDistrict().compareTo(o2.getDistrict()) ;
+            }
+        });
+        for (City c : cityList) {
+            System.out.println(c.toString());
+        }
+        */
+
+        /*
         City[] cities = cityList.toArray(new City[0]);
         int max = 0;
         for (City city : cities) {
@@ -64,6 +75,20 @@ public class Main {
         for (City city : cities) {
             if(max == city.getPopulation()) System.out.println("[" + city.getNumber() + "] = " + city.getPopulation());
         }
+        */
+
+        Map<String, Integer> cities = new HashMap<>();
+        for (City city : cityList) {
+            if (!cities.containsKey(city.getRegion())) {
+                cities.put(city.getRegion(), 1);
+            } else {
+                cities.put(city.getRegion(), cities.get(city.getRegion()) + 1);
+            }
+        }
+        for (Map.Entry<String, Integer> entry : cities.entrySet()) {
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
 
     }
+
 }
