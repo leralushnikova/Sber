@@ -36,28 +36,33 @@ public class Main {
             cityList.add(city);
         }
         reader.close();
-        /*for (City c : cityList) {
-            System.out.println(c.toString());
-        }*/
 
-        cityList.sort(new Comparator<City>() {
-            @Override
-            public int compare(City o1, City o2) {
-                return o1.getName().compareTo(o2.getName());
-            }
-        });
-        for (City c : cityList) {
-            System.out.println(c.toString());
+//        cityList.sort(new Comparator<City>() {
+//            @Override
+//            public int compare(City o1, City o2) {
+//                return o1.getName().compareTo(o2.getName());
+//            }
+//        });
+//        for (City c : cityList) {
+//            System.out.println(c.toString());
+//        }
+//        System.out.println();
+//        cityList.sort(new Comparator<City>() {
+//            @Override
+//            public int compare(City o1, City o2) {
+//                return o1.getDistrict().compareTo(o2.getDistrict()) ;
+//            }
+//        });
+//        for (City c : cityList) {
+//            System.out.println(c.toString());
+//        }
+        City[] cities = cityList.toArray(new City[0]);
+        int max = 0;
+        for (City city : cities) {
+            if(max < city.getPopulation()) max = city.getPopulation();
         }
-        System.out.println();
-        cityList.sort(new Comparator<City>() {
-            @Override
-            public int compare(City o1, City o2) {
-                return o1.getDistrict().compareTo(o2.getDistrict()) ;
-            }
-        });
-        for (City c : cityList) {
-            System.out.println(c.toString());
+        for (City city : cities) {
+            if(max == city.getPopulation()) System.out.println("[" + city.getNumber() + "] = " + city.getPopulation());
         }
 
     }
